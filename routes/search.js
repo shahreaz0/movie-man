@@ -1,8 +1,7 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
+const search = require("../models/Search");
 
-const Search = require("../models/Search");
-
+// routes
 router.get("/search", (req, res) => {
 	res.render("search", {
 		title: "Search",
@@ -10,18 +9,18 @@ router.get("/search", (req, res) => {
 	});
 });
 
-router.get("/results", (req, res) => {
+router.get("/results", async (req, res) => {
 	const q = req.query.movieName;
-	//console.log(q);
 	if (q) {
-		const search = new Search(q);
-		search.getData((error, data) => {
-			if (error) return res.send(error);
+		try {
+			const data = await search(q);
 			res.render("results", {
 				title: "Results",
 				data: data.Search,
 			});
-		});
+		} catch (error) {
+			res.send(error);
+		}
 	} else {
 		res.redirect("/search");
 	}

@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title><%= title %></title>
-		<!-- Main -->
-		<link rel="stylesheet" href="/stylesheets/style.css" />
-		<!-- Semantic UI -->
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-		/>
-	</head>
-	<body>
-		<div class="ui container">
-			<h1><%= title %></h1>
-			<p>Welcome to <%= title %></p>
 
-			<h1>Movie Name</h1>
+<head>
+	<title><%= title %></title>
+	<!-- Main -->
+	<link rel="stylesheet" href="/stylesheets/style.css" />
+	<!-- Semantic UI -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+</head>
 
-			<% data.forEach(e => { %>
+<body>
+	<div class="ui container">
+		<h1><%= title %></h1>
 
-			<li><b><%= e.Title %></b> - <em> <%= e.Year %> </em></li>
+		<% if (locals.data) { %>
+		<% data.forEach(e => { %>
 
-			<% }); %>
-		</div>
+		<li><b><%= e.Title %></b> - <em> <%= e.Year %> </em></li>
 
-		<!-- Scripts----------------------------------------------------------------------- -->
-		<!-- jQuery -->
-		<script
-			src="https://code.jquery.com/jquery-3.4.1.min.js"
-			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-			crossorigin="anonymous"
-		></script>
-		<!-- Semantic UI -->
-		<script src=" https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-	</body>
+		<% }); %>
+
+		<% } else { %>
+		<p>No movie found.</p>
+		<% } %>
+
+		<h4><a href="/search">Search again</a></h4>
+	</div>
+
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<!-- Semantic UI -->
+	<script src=" https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+</body>
+
 </html>
